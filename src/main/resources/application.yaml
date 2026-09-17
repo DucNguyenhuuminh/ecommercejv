@@ -1,0 +1,68 @@
+server:
+  port: ${PORT:2803}
+
+spring:
+  application:
+    name: ecommercejv
+  security:
+    user:
+      name: duc
+      password: duc123
+
+  datasource:
+    url: jdbc:mysql://${DB_HOST:127.0.0.1}:${DB_PORT:3306}/${DB_NAME:ecommerce}?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    username: ${DB_USER:ecommerce}
+    password: ${DB_PASSWORD:Minhduc283}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+
+  main:
+    lazy-initialization: true
+
+  devtools:
+    restart:
+      exclude: static/**,templates/**
+
+jwt:
+  access-secret: ${JWT_ACCESS_SECRET:4278a879-7c19-4928-add9-eea4502597ae}
+  refresh-secret: ${JWT_REFRESH_SECRET:4278a879-7c19-4928-add9-eea4502597ae}
+  access-expiration: 900000
+  refresh-expiration: 604800000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus, info
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+logging:
+  level:
+    root: INFO
+    duc.project.ecommercejv: DEBUG
+  file:
+    name: logs/app.log

@@ -1,0 +1,57 @@
+2026-09-17T00:10:58.872+07:00  WARN 2744 --- [ecommercejv] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m41s180ms257µs700ns).
+2026-09-17T00:32:15.671+07:00  INFO 2744 --- [ecommercejv] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-17T00:32:15.682+07:00  INFO 2744 --- [ecommercejv] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-09-17T00:32:15.711+07:00  INFO 2744 --- [ecommercejv] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17T00:32:15.742+07:00  INFO 2744 --- [ecommercejv] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-17T00:32:15.750+07:00  INFO 2744 --- [ecommercejv] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-17T00:36:04.315+07:00  INFO 11880 --- [ecommercejv] [restartedMain] d.p.ecommercejv.EcommercejvApplication   : Starting EcommercejvApplication using Java 21.0.10 with PID 11880 (D:\ecommercejv\ecommercejv\target\classes started by nguye in D:\ecommercejv\ecommercejv)
+2026-09-17T00:36:04.315+07:00 DEBUG 11880 --- [ecommercejv] [restartedMain] d.p.ecommercejv.EcommercejvApplication   : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-17T00:36:04.315+07:00  INFO 11880 --- [ecommercejv] [restartedMain] d.p.ecommercejv.EcommercejvApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-09-17T00:36:04.379+07:00  INFO 11880 --- [ecommercejv] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-17T00:36:04.379+07:00  INFO 11880 --- [ecommercejv] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-17T00:36:05.395+07:00  INFO 11880 --- [ecommercejv] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-17T00:36:05.395+07:00  INFO 11880 --- [ecommercejv] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17T00:36:05.428+07:00  INFO 11880 --- [ecommercejv] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 0 JPA repository interfaces.
+2026-09-17T00:36:05.491+07:00  INFO 11880 --- [ecommercejv] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-17T00:36:05.491+07:00  INFO 11880 --- [ecommercejv] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-17T00:36:05.507+07:00  INFO 11880 --- [ecommercejv] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2026-09-17T00:36:06.449+07:00  INFO 11880 --- [ecommercejv] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 2803 (http)
+2026-09-17T00:36:06.483+07:00  INFO 11880 --- [ecommercejv] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-17T00:36:06.488+07:00  INFO 11880 --- [ecommercejv] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-17T00:36:06.758+07:00  INFO 11880 --- [ecommercejv] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2379 ms
+2026-09-17T00:36:07.324+07:00  INFO 11880 --- [ecommercejv] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-17T00:36:07.556+07:00  INFO 11880 --- [ecommercejv] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5ebef006
+2026-09-17T00:36:07.559+07:00  INFO 11880 --- [ecommercejv] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-17T00:36:07.606+07:00  INFO 11880 --- [ecommercejv] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://127.0.0.1:3306/ecommerce?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC (MySQL 8.0)
+2026-09-17T00:36:08.490+07:00  INFO 11880 --- [ecommercejv] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.044s)
+2026-09-17T00:36:08.523+07:00  INFO 11880 --- [ecommercejv] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `ecommerce`: 1
+2026-09-17T00:36:08.530+07:00  INFO 11880 --- [ecommercejv] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `ecommerce` is up to date. No migration necessary.
+2026-09-17T00:36:08.669+07:00  INFO 11880 --- [ecommercejv] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17T00:36:08.732+07:00  INFO 11880 --- [ecommercejv] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-17T00:36:09.340+07:00  INFO 11880 --- [ecommercejv] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17T00:36:09.501+07:00  INFO 11880 --- [ecommercejv] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://127.0.0.1:3306/ecommerce?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: ecommerce/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17T00:36:10.250+07:00  INFO 11880 --- [ecommercejv] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17T00:36:10.318+07:00  INFO 11880 --- [ecommercejv] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17T00:36:11.259+07:00  INFO 11880 --- [ecommercejv] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 2803 (http) with context path '/'
+2026-09-17T00:36:11.610+07:00  INFO 11880 --- [ecommercejv] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-09-17T00:36:11.633+07:00  INFO 11880 --- [ecommercejv] [restartedMain] d.p.ecommercejv.EcommercejvApplication   : Started EcommercejvApplication in 8.053 seconds (process running for 8.771)
+2026-09-17T00:36:23.548+07:00  INFO 11880 --- [ecommercejv] [http-nio-2803-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-17T00:36:23.548+07:00  INFO 11880 --- [ecommercejv] [http-nio-2803-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-09-17T00:36:23.665+07:00  INFO 11880 --- [ecommercejv] [http-nio-2803-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 107 ms
+2026-09-17T00:36:23.780+07:00  INFO 11880 --- [ecommercejv] [http-nio-2803-exec-1] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-09-17T00:37:30.729+07:00  INFO 11880 --- [ecommercejv] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-17T00:37:30.740+07:00  INFO 11880 --- [ecommercejv] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-09-17T00:37:30.794+07:00  INFO 11880 --- [ecommercejv] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17T00:37:30.800+07:00  INFO 11880 --- [ecommercejv] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-17T00:37:30.809+07:00  INFO 11880 --- [ecommercejv] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
