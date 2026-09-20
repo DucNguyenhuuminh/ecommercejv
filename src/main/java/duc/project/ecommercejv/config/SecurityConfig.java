@@ -19,20 +19,38 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
+    private final PermissionAuthorizationManager permissionAuthorizationManager;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
 
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/actuator/**").permitAll()
-                                                                                .requestMatchers("/api/auth/register",
+                                                                                .requestMatchers(
+                                                                                        "/api/auth/register",
                                                                                         "/api/auth/login",
-                                                                                        "/api/auth/refresh").permitAll()
-                                                                                .anyRequest().authenticated()
+                                                                                        "/api/auth/refresh",
+                                                                                        "/api/auth/verify-email",
+                                                                                        "/api/auth/forgot-password",
+                                                                                        "/api/auth/reset-password").permitAll()
+                                                                                .anyRequest().access(permissionAuthorizationManager)
+                )
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint((req,res,e) -> {
+                            res.setStatus(401);
+                            res.setContentType("application/json;charset=UTF-8");
+                            res.getWriter().write("{\"message\":\"Did not login yet\"}");
+                        })
+                        .accessDeniedHandler((req,res,e) -> {
+                            res.setStatus(403);
+                            res.setContentType("application/json;charset=UTF-8");
+                            res.getWriter().write("{\"message\":\"Have not permission to access\"}");
+                        })
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
