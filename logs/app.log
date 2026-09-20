@@ -55,3 +55,41 @@
 2026-09-17T00:37:30.794+07:00  INFO 11880 --- [ecommercejv] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-09-17T00:37:30.800+07:00  INFO 11880 --- [ecommercejv] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2026-09-17T00:37:30.809+07:00  INFO 11880 --- [ecommercejv] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-17T12:14:04.699+07:00  INFO 17228 --- [ecommercejv] [main] d.p.e.EcommercejvApplicationTests        : Starting EcommercejvApplicationTests using Java 21.0.10 with PID 17228 (started by nguye in D:\ecommercejv\ecommercejv)
+2026-09-17T12:14:04.700+07:00 DEBUG 17228 --- [ecommercejv] [main] d.p.e.EcommercejvApplicationTests        : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-17T12:14:04.702+07:00  INFO 17228 --- [ecommercejv] [main] d.p.e.EcommercejvApplicationTests        : No active profile set, falling back to 1 default profile: "default"
+2026-09-17T12:14:06.226+07:00  INFO 17228 --- [ecommercejv] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-17T12:14:06.230+07:00  INFO 17228 --- [ecommercejv] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17T12:14:06.273+07:00  INFO 17228 --- [ecommercejv] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 0 JPA repository interfaces.
+2026-09-17T12:14:06.376+07:00  INFO 17228 --- [ecommercejv] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-17T12:14:06.378+07:00  INFO 17228 --- [ecommercejv] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-17T12:14:06.397+07:00  INFO 17228 --- [ecommercejv] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2 ms. Found 0 Redis repository interfaces.
+2026-09-17T12:14:08.434+07:00  INFO 17228 --- [ecommercejv] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-17T12:14:08.733+07:00  INFO 17228 --- [ecommercejv] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7619fbe7
+2026-09-17T12:14:08.736+07:00  INFO 17228 --- [ecommercejv] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-17T12:14:08.798+07:00  INFO 17228 --- [ecommercejv] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://127.0.0.1:3306/ecommerce?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC (MySQL 8.0)
+2026-09-17T12:14:09.786+07:00  INFO 17228 --- [ecommercejv] [main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.121s)
+2026-09-17T12:14:09.818+07:00  INFO 17228 --- [ecommercejv] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `ecommerce`: 1
+2026-09-17T12:14:09.827+07:00  INFO 17228 --- [ecommercejv] [main] o.f.core.internal.command.DbMigrate      : Schema `ecommerce` is up to date. No migration necessary.
+2026-09-17T12:14:10.011+07:00  INFO 17228 --- [ecommercejv] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17T12:14:10.127+07:00  INFO 17228 --- [ecommercejv] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-09-17T12:14:10.862+07:00  INFO 17228 --- [ecommercejv] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17T12:14:11.025+07:00  INFO 17228 --- [ecommercejv] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://127.0.0.1:3306/ecommerce?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: ecommerce/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17T12:14:11.765+07:00  INFO 17228 --- [ecommercejv] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17T12:14:11.831+07:00  INFO 17228 --- [ecommercejv] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17T12:14:14.706+07:00  INFO 17228 --- [ecommercejv] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-09-17T12:14:14.742+07:00  INFO 17228 --- [ecommercejv] [main] d.p.e.EcommercejvApplicationTests        : Started EcommercejvApplicationTests in 10.808 seconds (process running for 12.837)
+2026-09-17T12:14:15.897+07:00  INFO 17228 --- [ecommercejv] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17T12:14:15.901+07:00  INFO 17228 --- [ecommercejv] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-17T12:14:15.914+07:00  INFO 17228 --- [ecommercejv] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
