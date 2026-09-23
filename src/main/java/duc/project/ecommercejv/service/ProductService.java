@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +50,24 @@ public class ProductService {
             linkDiscounts(product, req.getDiscountIds());
         }
         return toResponse(product);
+    }
+
+    @Transactional
+    public ProductResponse update(Long id, ProductRequest req) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new IllegalStateException("Cannot find product"));
+        applyBasicFields(product, req);
+        productRepository.save(product);
+
+        if (req.getPrice() != null) {
+            addPrice(product, req);
+        }
+        return toResponse(product);
+    }
+
+    public void softDelete(Long id) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new IllegalStateException("Cannot find product"));
+        product.setDeletedAt(LocalDateTime.now());
+        productRepository.save(product);
     }
 
     private void applyBasicFields(Product product, ProductRequest req) {

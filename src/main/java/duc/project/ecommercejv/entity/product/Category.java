@@ -25,7 +25,7 @@ public class Category {
     private String description;
 
     @Column(name = "parent_id")
-    private int parentId;
+    private Long parentId;
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
