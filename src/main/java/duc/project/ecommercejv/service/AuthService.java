@@ -4,7 +4,7 @@ import duc.project.ecommercejv.dto.auth.AuthResponse;
 import duc.project.ecommercejv.dto.auth.LoginRequest;
 import duc.project.ecommercejv.dto.auth.RegisterRequest;
 import duc.project.ecommercejv.entity.auth.*;
-import duc.project.ecommercejv.exception.auth.EmailNotVerifiedException;
+import duc.project.ecommercejv.exception.EmailNotVerifiedException;
 import duc.project.ecommercejv.repository.auth.*;
 import duc.project.ecommercejv.security.JwtService;
 import duc.project.ecommercejv.security.TokenUtils;
@@ -17,9 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.Base64;

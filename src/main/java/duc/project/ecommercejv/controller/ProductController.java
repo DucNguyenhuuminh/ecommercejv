@@ -28,6 +28,11 @@ public class ProductController {
         return productService.search(categoryId, keyword, PageRequest.of(page, size));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductResponse> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.getById(id));
+    }
+
     @PostMapping
     public ResponseEntity<ProductResponse> create(@Valid @RequestBody ProductRequest req) {
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.create(req));

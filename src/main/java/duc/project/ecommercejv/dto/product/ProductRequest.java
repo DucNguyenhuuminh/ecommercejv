@@ -1,6 +1,7 @@
 package duc.project.ecommercejv.dto.product;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class ProductRequest {
     private String name;
     private String description;
 
+    @NotNull(message = "Stock cannot be null")
     @PositiveOrZero(message = "Stock cannot negative")
     private Integer stock;
 

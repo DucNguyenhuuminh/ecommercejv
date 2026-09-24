@@ -3,6 +3,7 @@ package duc.project.ecommercejv.service;
 import duc.project.ecommercejv.dto.product.ProductRequest;
 import duc.project.ecommercejv.dto.product.ProductResponse;
 import duc.project.ecommercejv.entity.product.*;
+import duc.project.ecommercejv.exception.NotFoundException;
 import duc.project.ecommercejv.repository.product.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -32,6 +33,12 @@ public class ProductService {
     public Page<ProductResponse> search(Long categoryId, String keyword, Pageable pageable) {
         Specification<Product> spec = Specification.where(ProductSpecs.hasCategory(categoryId)).and(ProductSpecs.nameContains(keyword));
         return productRepository.findAll(spec, pageable).map(this::toResponse);
+    }
+
+    @Transactional(readOnly = true)
+    public ProductResponse getById(Long id) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new NotFoundException("Cannot find product"));
+        return toResponse(product);
     }
 
     @Transactional
@@ -77,7 +84,11 @@ public class ProductService {
         product.setStock(req.getStock());
 
         if (req.getCategoryIds() != null) {
-            product.setCategories(new HashSet<>(categoryRepository.findAllById(req.getCategoryIds())));
+            List<Category> categories = categoryRepository.findAllById(req.getCategoryIds());
+            if (categories.size() != req.getCategoryIds().size()) {
+                throw new NotFoundException("One or many categories not exist");
+            }
+            product.setCategories(new HashSet<>(categories));
         }
     }
 

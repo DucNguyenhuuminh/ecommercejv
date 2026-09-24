@@ -19,6 +19,11 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
+    @GetMapping
+    public List<CategoryResponse> flatList() {
+        return categoryService.getFlatList();
+    }
+
     @GetMapping("/tree")
     public List<CategoryResponse> tree() {
         return categoryService.getTree();

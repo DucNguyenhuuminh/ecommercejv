@@ -46,6 +46,11 @@ public class CategoryService {
     }
 
     @Transactional(readOnly = true)
+    public List<CategoryResponse> getFlatList() {
+        return categoryRepository.findAll().stream().map(this::toFlatResponse).collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
     public List<CategoryResponse> getTree() {
         List<Category> all = categoryRepository.findAll();
         Map<Long, List<Category>> byParent = all.stream().collect(Collectors.groupingBy(c -> c.getParentId() == null ? ROOT_KEY : c.getParentId()));
