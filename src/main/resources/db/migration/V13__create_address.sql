@@ -1,0 +1,16 @@
+CREATE TABLE address (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL UNIQUE,
+    recipient_name VARCHAR(255) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    detail VARCHAR(500),
+    ward VARCHAR(100),
+    district VARCHAR(100),
+    province VARCHAR(100),
+    is_default BOOLEAN DEFAULT FALSE,
+    created_at DATETIME DEFAULT  CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT  CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_address_user FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE INDEX idx_address_user ON address(user_id);
