@@ -29,10 +29,10 @@ public class Address {
     @Column(nullable = false)
     private String phone;
 
-    private String detail;
-    private String ward;
-    private String district;
     private String province;
+    private String district;
+    private String ward;
+    private String detail;
 
     @Column(name = "is_default")
     private Boolean isDefault = false;
