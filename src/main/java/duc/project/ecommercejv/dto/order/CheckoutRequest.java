@@ -12,4 +12,5 @@ public class CheckoutRequest {
     private Long addressId;
     private String shippingMethod;
     private String note;
+    private String discountCode;
 }

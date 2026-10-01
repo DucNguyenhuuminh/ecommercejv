@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @SQLRestriction("deleted_at IS NULL")
 public class Discount {
 
-    private enum Type {
+    public enum Type {
         PERCENTAGE,
         FIXED_AMOUNT
     }
@@ -37,16 +37,16 @@ public class Discount {
     private BigDecimal sale;
 
     @Column(name = "min_order_amount", precision = 15, scale = 2)
-    private double minOrderAmount;
+    private BigDecimal minOrderAmount;
 
     @Column(name = "max_discount_amount", precision = 15, scale = 2)
-    private double maxDiscountAmount;
+    private BigDecimal maxDiscountAmount;
 
     @Column(name = "usage_limit")
-    private int usageLimit;
+    private Integer usageLimit;
 
     @Column(name = "used_count")
-    private int usedCount = 0;
+    private Integer usedCount = 0;
 
     @Column(name = "start_date")
     private LocalDateTime startDate;
