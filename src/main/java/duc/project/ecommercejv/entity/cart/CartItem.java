@@ -1,6 +1,7 @@
 package duc.project.ecommercejv.entity.cart;
 
 import duc.project.ecommercejv.entity.product.Product;
+import duc.project.ecommercejv.entity.product.ProductSku;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,8 +25,8 @@ public class CartItem {
     private Cart cart;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    @JoinColumn(name = "product_sku_id", nullable = false)
+    private ProductSku productSku;
 
     @Column(nullable = false)
     private Integer quantity;

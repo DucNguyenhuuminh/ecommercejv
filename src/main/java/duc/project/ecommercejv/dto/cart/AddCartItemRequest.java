@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 public class AddCartItemRequest {
 
-    @NotNull(message = "product Id cannot be blank")
-    private Long productId;
+    @NotNull(message = "Product Sku Id cannot be blank")
+    private Long skuId;
 
     @NotNull(message = "Quantity cannot be blank")
     @Positive(message = "Quantity must be greater than 0")

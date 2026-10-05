@@ -1,6 +1,7 @@
 package duc.project.ecommercejv.entity.order;
 
 import duc.project.ecommercejv.entity.product.Product;
+import duc.project.ecommercejv.entity.product.ProductSku;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,14 +26,17 @@ public class OrderItem {
     private Order order;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    @JoinColumn(name = "product_sku_id", nullable = false)
+    private ProductSku productSku;
 
     @Column(nullable = false)
     private Integer quantity;
 
     @Column(name = "price_at_purchase", nullable = false, precision = 15, scale = 2)
     private BigDecimal priceAtPurchase;
+
+    @Column(name = "sku_snapshot")
+    private String skuSnapshot;
 
     @Column(name = "created_at", updatable = false, insertable = false)
     private LocalDateTime createdAt;

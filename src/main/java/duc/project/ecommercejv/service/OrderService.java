@@ -10,6 +10,8 @@ import duc.project.ecommercejv.entity.cart.CartItem;
 import duc.project.ecommercejv.entity.order.*;
 import duc.project.ecommercejv.entity.product.Discount;
 import duc.project.ecommercejv.entity.product.Product;
+import duc.project.ecommercejv.entity.product.ProductAttributeValue;
+import duc.project.ecommercejv.entity.product.ProductSku;
 import duc.project.ecommercejv.exception.BadRequestException;
 import duc.project.ecommercejv.exception.NotFoundException;
 import duc.project.ecommercejv.repository.cart.CartItemRepository;
@@ -18,6 +20,7 @@ import duc.project.ecommercejv.repository.order.*;
 import duc.project.ecommercejv.repository.product.DiscountRepository;
 import duc.project.ecommercejv.repository.product.ProductPriceRepository;
 import duc.project.ecommercejv.repository.product.ProductRepository;
+import duc.project.ecommercejv.repository.product.ProductSkuRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -45,7 +48,7 @@ public class OrderService {
     private final StatusRepository statusRepository;
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
-    private final ProductRepository productRepository;
+    private final ProductSkuRepository productSkuRepository;
     private final ProductPriceRepository productPriceRepository;
     private final OrderDiscountRepository orderDiscountRepository;
     private final DiscountRepository discountRepository;
@@ -78,24 +81,24 @@ public class OrderService {
         BigDecimal total = BigDecimal.ZERO;
 
         for (CartItem cartItem: cartItems) {
-            Product product = productRepository.findById(cartItem.getProduct().getId()).orElseThrow(() -> new NotFoundException("Product is not exist"));
-            if (cartItem.getQuantity() > product.getStock()) {
-                throw new BadRequestException("Product \"" + product.getName() + "\" is not enough stock (remaining " + product.getStock() + ")");
+            ProductSku sku = productSkuRepository.findById(cartItem.getProductSku().getId()).orElseThrow(() -> new NotFoundException("Product is not exist"));
+            if (cartItem.getQuantity() > sku.getStock()) {
+                throw new BadRequestException("Product's SKU \"" + sku.getProduct().getName() + "\" is not enough stock (remaining " + sku.getStock() + ")");
             }
 
-            BigDecimal unitPrice = productPriceRepository.findTopByProductIdOrderByPrice_CreatedAtDesc(product.getId())
+            BigDecimal unitPrice = productPriceRepository.findTopByProductSkuIdOrderByPrice_CreatedAtDesc(sku.getId())
                     .map(pp -> pp.getPrice().getPrice())
-                    .orElseThrow(() -> new BadRequestException("Product \"" + product.getName() + "\" do not have price, cannot get order"));
+                    .orElseThrow(() -> new BadRequestException("Product's SKU \"" + sku.getProduct().getName() + "\" do not have price, cannot get order"));
 
             OrderItem orderItem = new OrderItem();
             orderItem.setOrder(order);
-            orderItem.setProduct(product);
+            orderItem.setProductSku(sku);
             orderItem.setQuantity(cartItem.getQuantity());
             orderItem.setPriceAtPurchase(unitPrice);
             orderItemRepository.save(orderItem);
 
-            product.setStock(product.getStock() - cartItem.getQuantity());
-            productRepository.save(product);
+            sku.setStock(sku.getStock() - cartItem.getQuantity());
+            productSkuRepository.save(sku);
             total = total.add(unitPrice.multiply(BigDecimal.valueOf(cartItem.getQuantity())));
         }
 
@@ -154,9 +157,9 @@ public class OrderService {
 
         List<OrderItem> items = orderItemRepository.findByOrderId(order.getId());
         for (OrderItem item: items) {
-            Product product = item.getProduct();
-            product.setStock(product.getStock() + item.getQuantity());
-            productRepository.save(product);
+            ProductSku sku = item.getProductSku();
+            sku.setStock(sku.getStock() + item.getQuantity());
+            productSkuRepository.save(sku);
         }
 
         order.setStatus(cancelledStatus);
@@ -166,7 +169,7 @@ public class OrderService {
         return toResponse(order);
     }
 
-//    HELPER
+//    ==========HELPER==========
     private Order getOrderOr404(Long orderId) {
         return orderRepository.findById(orderId).orElseThrow(() -> new NotFoundException("Cannot find order"));
     }
@@ -187,8 +190,10 @@ public class OrderService {
     private OrderResponse toResponse(Order order) {
         List<OrderItemResponse> items = orderItemRepository.findByOrderId(order.getId()).stream()
                 .map(oi -> new OrderItemResponse(
-                        oi.getProduct().getId(),
-                        oi.getProduct().getName(),
+                        oi.getProductSku().getId(),
+                        oi.getProductSku().getSkuCode(),
+                        oi.getProductSku().getProduct().getName(),
+                        oi.getSkuSnapshot(),
                         oi.getQuantity(),
                         oi.getPriceAtPurchase(),
                         oi.getPriceAtPurchase().multiply(BigDecimal.valueOf(oi.getQuantity()))
@@ -243,5 +248,12 @@ public class OrderService {
         orderDiscountRepository.save(orderDiscount);
 
         return amount;
+    }
+
+    private String buildSkuSnapshot(ProductSku sku) {
+        if (sku.getAttributeValues().isEmpty()) {
+            return sku.getSkuCode();
+        }
+        return sku.getAttributeValues().stream().map(ProductAttributeValue::getValue).collect(Collectors.joining(" / "));
     }
 }

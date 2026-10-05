@@ -18,13 +18,13 @@ CREATE TABLE orders (
 CREATE TABLE order_item (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     order_id BIGINT NOT NULL,
-    product_id BIGINT NOT NULL,
+    product_sku_id BIGINT NOT NULL,
     quantity INT NOT NULL,
     price_at_purchase DECIMAL(15,2) NOT NULL,
     created_at DATETIME DEFAULT  CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT  CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_order_item_order FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
-    CONSTRAINT fk_order_item_product FOREIGN KEY (product_id) REFERENCES  product(id)
+    CONSTRAINT fk_order_item_product FOREIGN KEY (product_sku_id) REFERENCES  product(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE order_status_history (

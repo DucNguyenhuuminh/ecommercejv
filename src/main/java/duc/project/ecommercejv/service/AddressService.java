@@ -55,7 +55,7 @@ public class AddressService {
         return toResponse(addressRepository.save(address));
     }
 
-//    HELPER
+//    ==========HELPER==========
     private Address getOwnedAddress(User user, Long id) {
         Address address = addressRepository.findById(id).orElseThrow(() -> new NotFoundException("Cannot find address"));
         if (!address.getUser().getId().equals(user.getId())) {

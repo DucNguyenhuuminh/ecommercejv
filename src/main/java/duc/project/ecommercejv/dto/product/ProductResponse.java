@@ -13,9 +13,8 @@ public class ProductResponse {
     private String seri;
     private String name;
     private String description;
-    private Integer stock;
-    private BigDecimal currentPrice;
     private List<String> categoryNames;
     private List<String> imageUrl;
     private List<String> discountCodes;
+    private List<ProductSkuResponse> skus;
 }

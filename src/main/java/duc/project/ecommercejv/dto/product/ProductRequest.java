@@ -19,14 +19,6 @@ public class ProductRequest {
     @NotBlank(message = "Product's name cannot be blank")
     private String name;
     private String description;
-
-    @NotNull(message = "Stock cannot be null")
-    @PositiveOrZero(message = "Stock cannot negative")
-    private Integer stock;
-
-    @Positive(message = "Price must greater than 0")
-    private BigDecimal price;
-
     private List<Long> categoryIds;
     private List<String> imageUrls;
     private List<Long> discountIds;

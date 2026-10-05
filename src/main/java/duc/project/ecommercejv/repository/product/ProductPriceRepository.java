@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductPriceRepository extends JpaRepository<ProductPrice, Long> {
-    Optional<ProductPrice> findTopByProductIdOrderByPrice_CreatedAtDesc(Long productId);
-    List<ProductPrice> findByProductIdOrderByPrice_CreatedAtDesc(Long productId);
+    Optional<ProductPrice> findTopByProductSkuIdOrderByPrice_CreatedAtDesc(Long skuId);
+    List<ProductPrice> findByProductSkuIdOrderByPrice_CreatedAtDesc(Long skuId);
 }

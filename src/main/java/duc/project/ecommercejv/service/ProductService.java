@@ -1,8 +1,8 @@
 package duc.project.ecommercejv.service;
 
-import duc.project.ecommercejv.dto.product.ProductRequest;
-import duc.project.ecommercejv.dto.product.ProductResponse;
+import duc.project.ecommercejv.dto.product.*;
 import duc.project.ecommercejv.entity.product.*;
+import duc.project.ecommercejv.exception.BadRequestException;
 import duc.project.ecommercejv.exception.NotFoundException;
 import duc.project.ecommercejv.repository.product.*;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -136,3 +137,4 @@ public class ProductService {
         return new ProductResponse(p.getId(), p.getSeri(), p.getName(), p.getDescription(), p.getStock(), currentPrice, categoryNames, imageUrls, discountCodes);
     }
 }
+

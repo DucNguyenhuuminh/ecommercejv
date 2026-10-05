@@ -23,6 +23,7 @@ public class EmailService {
         send(to, "Reset your password", "Click into this link to reset the password (expires after 15 minutes):\n" + link + "\n\nIf your are not required, please skip this email.");
     }
 
+//    ==========HELPER==========
     private void send (String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);

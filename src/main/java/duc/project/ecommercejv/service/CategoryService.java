@@ -57,6 +57,7 @@ public class CategoryService {
         return buildChildren(ROOT_KEY, byParent, 0);
     }
 
+//    ==========HELPER==========
     private List<CategoryResponse> buildChildren(Long parentId, Map<Long, List<Category>> byParent, int depth) {
         if (depth >= MAX_DEPTH) {
             return List.of();

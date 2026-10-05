@@ -13,7 +13,6 @@ CREATE TABLE product (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     seri VARCHAR(100) UNIQUE,
     name VARCHAR(255) NOT NULL,
-    stock INT NOT NULL DEFAULT 0,
     description VARCHAR(1000),
     deleted_at DATETIME,
     created_at DATETIME DEFAULT  CURRENT_TIMESTAMP,

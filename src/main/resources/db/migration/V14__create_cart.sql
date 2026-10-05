@@ -9,12 +9,12 @@ CREATE TABLE cart (
 CREATE TABLE cart_item (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     cart_id BIGINT NOT NULL,
-    product_id BIGINT NOT NULL,
+    product_sku_id BIGINT NOT NULL,
     quantity INT NOT NULL,
     created_at DATETIME DEFAULT  CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT  CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_cart_item_cart FOREIGN KEY (cart_id) REFERENCES cart(id) ON DELETE CASCADE,
-    CONSTRAINT fk_cart_item_product FOREIGN KEY (product_id) REFERENCES product(id)
+    CONSTRAINT fk_cart_item_product FOREIGN KEY (product_sku_id) REFERENCES product(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX idx_cart_item_cart ON cart_item(cart_id);

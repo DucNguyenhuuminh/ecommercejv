@@ -28,8 +28,6 @@ public class Product {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private Integer stock;
     private String description;
 
     @ManyToMany
