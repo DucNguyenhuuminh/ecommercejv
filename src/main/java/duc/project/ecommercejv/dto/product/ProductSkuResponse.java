@@ -15,10 +15,7 @@ import java.util.Map;
 public class ProductSkuResponse {
     private Long id;
     private String skuCode;
-
-    @PositiveOrZero(message = "Stock cannot be negative")
     private Integer stock;
-
     private BigDecimal currentPrice;
     private Map<String, String> attributes;
 }

@@ -24,11 +24,10 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
-    private final PriceRepository priceRepository;
-    private final ProductPriceRepository productPriceRepository;
     private final ProductImageRepository productImageRepository;
     private final DiscountRepository discountRepository;
     private final ProductDiscountRepository productDiscountRepository;
+    private final ProductSkuService productSkuService;
 
     @Transactional(readOnly = true)
     public Page<ProductResponse> search(Long categoryId, String keyword, Pageable pageable) {
@@ -48,9 +47,6 @@ public class ProductService {
         applyBasicFields(product, req);
         product = productRepository.save(product);
 
-        if (req.getPrice() != null) {
-            addPrice(product, req);
-        }
         if (req.getImageUrls() != null && !req.getImageUrls().isEmpty()) {
             addImages(product, req.getImageUrls());
         }
@@ -66,9 +62,6 @@ public class ProductService {
         applyBasicFields(product, req);
         productRepository.save(product);
 
-        if (req.getPrice() != null) {
-            addPrice(product, req);
-        }
         return toResponse(product);
     }
 
@@ -82,7 +75,6 @@ public class ProductService {
         product.setSeri(req.getSeri());
         product.setName(req.getName());
         product.setDescription(req.getDescription());
-        product.setStock(req.getStock());
 
         if (req.getCategoryIds() != null) {
             List<Category> categories = categoryRepository.findAllById(req.getCategoryIds());
@@ -91,17 +83,6 @@ public class ProductService {
             }
             product.setCategories(new HashSet<>(categories));
         }
-    }
-
-    private void addPrice(Product product, ProductRequest req) {
-        Price price = new Price();
-        price.setPrice(req.getPrice());
-        price = priceRepository.save(price);
-
-        ProductPrice link = new ProductPrice();
-        link.setProduct(product);
-        link.setPrice(price);
-        productPriceRepository.save(link);
     }
 
     private void addImages(Product product, List<String> urls) {
@@ -125,16 +106,11 @@ public class ProductService {
     }
 
     private ProductResponse toResponse(Product p) {
-        var currentPrice = productPriceRepository
-                .findTopByProductIdOrderByPrice_CreatedAtDesc(p.getId())
-                .map(pp -> pp.getPrice().getPrice())
-                .orElse(null);
-
         List<String> categoryNames = p.getCategories().stream().map(Category::getName).collect(Collectors.toList());
         List<String> imageUrls = p.getImages().stream().map(ProductImage::getUrl).collect(Collectors.toList());
         List<String> discountCodes = productDiscountRepository.findByProductId(p.getId()).stream().map(pd -> pd.getDiscount().getCode()).collect(Collectors.toList());
 
-        return new ProductResponse(p.getId(), p.getSeri(), p.getName(), p.getDescription(), p.getStock(), currentPrice, categoryNames, imageUrls, discountCodes);
+        return new ProductResponse(p.getId(), p.getSeri(), p.getName(), p.getDescription(), categoryNames, imageUrls, discountCodes, productSkuService.listByProduct(p.getId()));
     }
 }
 
