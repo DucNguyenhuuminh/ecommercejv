@@ -20,7 +20,7 @@ CREATE TABLE user_has_role (
     role_id BIGINT NOT NULL,
     PRIMARY KEY (user_id, role_id),
     CONSTRAINT fk_uhr_user FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
-    CONSTRAINT fk_uhr_role FOREIGN KEY (role_id) REFERENCES  role(id) ON DELETE CASCADE
+    CONSTRAINT fk_uhr_role FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE role_has_permission (
@@ -28,5 +28,5 @@ CREATE TABLE role_has_permission (
     permission_id BIGINT NOT NULL,
     PRIMARY KEY (role_id, permission_id),
     CONSTRAINT fk_rhp_role FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE,
-    CONSTRAINT fk_rhp_permission FOREIGN KEY (permission_id) REFERENCES permission(id) ON DELETE CASCADE,
+    CONSTRAINT fk_rhp_permission FOREIGN KEY (permission_id) REFERENCES permission(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -21,6 +21,7 @@ CREATE TABLE order_item (
     product_sku_id BIGINT NOT NULL,
     quantity INT NOT NULL,
     price_at_purchase DECIMAL(15,2) NOT NULL,
+    sku_snapshot VARCHAR(100),
     created_at DATETIME DEFAULT  CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT  CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_order_item_order FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
@@ -37,7 +38,7 @@ CREATE TABLE order_status_history (
     updated_at DATETIME DEFAULT  CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_osh_order FOREIGN KEY (order_id) REFERENCES  orders(id) ON DELETE CASCADE,
     CONSTRAINT fk_osh_status FOREIGN KEY (status_id) REFERENCES status(id),
-    CONSTRAINT fk_osh_user FOREIGN KEY (changed_by) REFERENCES user(id),
+    CONSTRAINT fk_osh_user FOREIGN KEY (changed_by) REFERENCES user(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX idx_orders_user ON orders(user_id);

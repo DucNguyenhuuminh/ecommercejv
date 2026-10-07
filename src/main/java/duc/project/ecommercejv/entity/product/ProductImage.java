@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = 'product_image')
+@Table(name = "product_image")
 @Getter
 @Setter
 @NoArgsConstructor

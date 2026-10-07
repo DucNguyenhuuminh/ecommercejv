@@ -16,10 +16,9 @@ CREATE TABLE discount (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE product_has_discount (
-    id BIGINT AUTO_INCREMENT NOT NULL,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY ,
     product_id BIGINT NOT NULL,
     discount_id BIGINT NOT NULL,
-    PRIMARY KEY (product_id, discount_id),
     CONSTRAINT fk_phd_product FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE,
     CONSTRAINT fk_phd_discount FOREIGN KEY (discount_id) REFERENCES discount(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -30,7 +30,7 @@ public class User {
     private Integer gender;
 
     @Column(name = "date_of_birth")
-    private LocalDate dateOfBirth;
+    private LocalDateTime dateOfBirth;
 
     @Column(nullable = true, unique = true)
     private String email;
